@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Himani Raval
+ * 104874756
+ */
+
 public class SuperHeroes : MonoBehaviour
 {
     public Sprite thing
@@ -20,8 +25,12 @@ public class SuperHeroes : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(() =>
         {
          
-            winner.Summon(spriterem, this);
-            getit.sprite = spriterem;
+            bool returned = winner.Summon(spriterem, this);
+            if(!returned)
+            {
+                getit.sprite = spriterem;
+            }
+
         });
 
     }

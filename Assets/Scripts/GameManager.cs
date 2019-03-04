@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Himani Raval
+ * 104874756
+ */
+
 public class GameManager : MonoBehaviour
 {
     public SuperHeroes prething;
@@ -10,33 +15,35 @@ public class GameManager : MonoBehaviour
     public Sprite cardback;
     public Sprite check;
     public SuperHeroes hero1, hero2;
+    BattleGround setscores;
+
+    int score = 100;
 
     public List<Sprite> cards = new List<Sprite>();
 
     public void Battle(int tough)
     {
-        //Debug.Log(tough); //fine
+  
         List<int> heroesindex = new List<int>();
         List<Sprite> heroes = new List<Sprite>();
-        //Debug.Log(heroes.Count);
+      
         int random = 0, index = 0;
 
         foreach (Transform thing in gridlaid)
         {
-            Debug.Log("Hi");
+      
             Destroy(thing.gameObject);
         }
 
-        Debug.Log(cards.Count);
         for (int j = 0; j < cards.Count; j++)
         {
-            //Debug.Log(cards.Count);
+         
             heroesindex.Add(j);
         }
 
         for(int k = 0; k < tough/2; k++)
         {
-           // Debug.Log(k);
+          
             random = Random.Range(0, heroesindex.Count-1);
             index = heroesindex[random];
             heroesindex.RemoveAt(random);
@@ -53,7 +60,6 @@ public class GameManager : MonoBehaviour
             random = Random.Range(0, heroes.Count-1);
             Sprite spriterem = heroes[random];
             heroes.RemoveAt(random);
-            Debug.Log(l);
             Instantiate(prething.gameObject, gridlaid).GetComponent<SuperHeroes>().match(spriterem, this);
 
         }
@@ -67,6 +73,8 @@ public class GameManager : MonoBehaviour
             if(hero1 != null)
             {
                 this.hero1.thing = hero2.thing = cardback;
+                //score -= 40;
+                //setscores.SetScore(score);
             }
 
             this.hero1 = current;
@@ -92,6 +100,5 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
-
 
 }
