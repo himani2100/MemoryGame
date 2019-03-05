@@ -24,7 +24,7 @@ public class SuperHeroes : MonoBehaviour
 
         GetComponent<Button>().onClick.AddListener(() =>
         {
-         
+            GetComponent<Button>().enabled = false;
             bool returned = winner.Summon(spriterem, this);
             if(!returned)
             {

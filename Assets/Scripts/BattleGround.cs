@@ -21,7 +21,7 @@ public class BattleGround : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        highScore.text = "1000";
+        //highScore.text = "1000";
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class BattleGround : MonoBehaviour
         Minutes.text = curtime.ToString();
     }
 
-    public void SetScore(int newscore)
+ /*   public void SetScore(int newscore)
     {
         if(newscore <= 0)
         {
@@ -44,5 +44,5 @@ public class BattleGround : MonoBehaviour
             highScore.text = newscore.ToString();
         }
 
-    }
+    } */
 }

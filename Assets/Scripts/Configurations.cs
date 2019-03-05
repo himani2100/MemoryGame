@@ -28,10 +28,17 @@ public class Configurations : MonoBehaviour
 
     public void OnPlay()
     {
+
         Debug.Log("Battle"); //for debugging purposes
         gameObject.SetActive(false); //stupid thing takes to the next screen
         //Debug.Log(tougherer);
         savetheworld.Battle(tougherer); //let GameManager take over
+    }
+
+    public void BattleAgain()
+    {
+        gameObject.SetActive(true);
+        savetheworld.gameObject.SetActive(true);
     }
 
 
