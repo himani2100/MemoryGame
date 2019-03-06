@@ -37,6 +37,7 @@ public class Configurations : MonoBehaviour
 
     public void BattleAgain()
     {
+        AudioManager.instance.StopSounds(); //when clicked rebattle this sets everything
         gameObject.SetActive(true);
         savetheworld.gameObject.SetActive(true);
     }

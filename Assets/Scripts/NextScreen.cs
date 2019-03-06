@@ -10,18 +10,6 @@ using UnityEngine.UI;
 
 public class NextScreen : MonoBehaviour //more like intro screen
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPlay() 
     {
         Debug.Log("Play"); //for debugging purposes

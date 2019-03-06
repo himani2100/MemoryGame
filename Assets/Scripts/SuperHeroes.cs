@@ -15,20 +15,21 @@ public class SuperHeroes : MonoBehaviour
         set
         {
             GetComponent<Image>().sprite = value;
+            //Unity inbuilt thing
         }
     }
 
     public void match(Sprite spriterem, GameManager winner)
     {
         var getit = GetComponent<Image>();
-
+        //get image
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            GetComponent<Button>().enabled = false;
+            GetComponent<Button>().enabled = false; //diable it
             bool returned = winner.Summon(spriterem, this);
             if(!returned)
             {
-                getit.sprite = spriterem;
+                getit.sprite = spriterem; //removed sprite
             }
 
         });
@@ -37,6 +38,7 @@ public class SuperHeroes : MonoBehaviour
 
     public void DefeatedHeroes()
     {
-        GetComponent<Button>().enabled = false;
+        GetComponent<Button>().enabled = false; //disbale button, 
+        //GameManager will reenable it
     }
 }

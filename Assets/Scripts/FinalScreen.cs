@@ -15,33 +15,22 @@ public class FinalScreen : MonoBehaviour
     public Text WonOrNot;
     public GameManager obj;
     public Text timeer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    //The assignment made me do it
+    //I wish i had the time stone
 
     public void Failed(int time)
     {
-
-        timeer.text = "Shawarma place closed at : " + time;
+        timeer.text = "Shawarma place closed at : " + time; //no shawarma for you
         score.text = "Score : 0";
-        WonOrNot.text = "Game Over! You were deafeated!";
-        obj.countscore = 1000;
+        WonOrNot.text = "Game Over! You were deafeated!"; //Agents of Sheild 
+        obj.countscore = 1000; //reset score if they wish to rebattle
     }
 
     public void Won(int scores, int time)
     {
-        timeer.text = "Shawarma served in : " + time;
+        timeer.text = "Shawarma served in : " + time; //shawarma for you
         score.text = "Score : " + scores;
-        WonOrNot.text = "You deafeated Earth's finest Heroes...";
-        obj.countscore = 1000;
+        WonOrNot.text = "You deafeated Earth's finest Heroes..."; //Hail Hydra
+        obj.countscore = 1000; //reset score if they wish to rebattle
     }
 }
