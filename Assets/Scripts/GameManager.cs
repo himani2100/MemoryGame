@@ -29,11 +29,15 @@ public class GameManager : MonoBehaviour
 
 
     public List<Sprite> cards = new List<Sprite>();
+    private IEnumerator hideCardsTimer;
+
+
     //ALL 20 cards held here 
     //populated randomly
 
     private void Update() 
     {
+
         final_time = ((int)Time.time - s_time);
         int min = final_time / 60;
         int sec = final_time % 60;
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
         timemanager.text = strings;
         /*
          * Shawarma is a reference to Tony Stark's Iron Man after he's back from
-         * pushing a nuclear missile through a hold in space in the 
+         * pushing a nuclear missile through a hole in space in the 
          * first avengers movie
          */
     }
@@ -114,27 +118,19 @@ public class GameManager : MonoBehaviour
         if (this.check == null) //just started playing or clicking one after attempting two matches
         {
             this.check = win;
-            if(hero1 != null) //meaning two cards have been clicked
-            {
-                this.hero1.thing = hero2.thing = cardback;
-                AudioManager.instance.UnMatchedCard(); //not match sounds
-                countscore -= 40; //because the card is unmatched
-                if(countscore <= 0)
-                {
-                    gameObject.SetActive(false);//take current screen away
-                    hero1 = null; //disable them so we can't click them again
-                    hero2 = null;
-                    this.check = null;
-                    AudioManager.instance.Defeated(); //because we've lost the game forever
-                    lostORwon.Failed(final_time); //display appropriate text
-                }
-                score.text = "Score : " + countscore.ToString(); //just write score
-            }
+
+            //StartCoroutine(cardfliptime());
+            //this.hero1.thing = hero2.thing = cardback;
+                hideCards();
+                Debug.Log("Not Null");
+
+           
             this.hero1 = current; //reset for future references
         }
 
         else if (this.check == win) //if a match
         {
+
             AudioManager.instance.MatchedCard(); //match sound
             this.hero1.thing = null;
             current.thing = null;
@@ -155,14 +151,51 @@ public class GameManager : MonoBehaviour
 
         else
         {
-            //if none of the above possiblilities
-            this.check = null;
+
+
+            AudioManager.instance.UnMatchedCard(); //not match sounds
+            countscore -= 40; //because the card is unmatched
             hero2 = current;
+
             hero1.GetComponent<Button>().enabled = true;
             hero2.GetComponent<Button>().enabled = true;
+            if (countscore <= 0)
+            {
+                gameObject.SetActive(false);//take current screen away
+                hero1 = null; //disable them so we can't click them again
+                hero2 = null;
+                this.check = null;
+                AudioManager.instance.Defeated(); //because we've lost the game forever
+                lostORwon.Failed(final_time); //display appropriate text
+            }
+            score.text = "Score : " + countscore.ToString(); //just write score
+
+            //if none of the above possiblilities
+            this.check = null;
+          
+            hideCardsTimer = cardfliptime();
+            StartCoroutine(hideCardsTimer);
         }
 
         return false;
+    }
+
+    IEnumerator cardfliptime()
+    {
+        yield return new WaitForSeconds(3f);
+        hideCards();
+
+    }
+
+    void hideCards()
+    {
+
+        if (hero1 != null) //meaning two cards have been clicked
+        {
+            this.hero1.thing = hero2.thing = cardback;
+            StopCoroutine(hideCardsTimer);
+        }
+
     }
 
 }

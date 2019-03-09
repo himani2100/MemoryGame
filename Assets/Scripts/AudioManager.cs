@@ -14,6 +14,10 @@ public class AudioManager : MonoBehaviour //manages all audio
     public static AudioManager instance; //to make it accessible everywhere
     public float stopseconds; //for defeat sound, its a song, i wanted to manage it here
 
+    public void Awake()
+    {
+        instance = this;
+    }
 
     public void MatchedCard()
     {
